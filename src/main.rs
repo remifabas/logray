@@ -50,12 +50,14 @@ async fn main() {
     }
 
     for p in players {
-        let mut units = swgoh::units::all_unit();
+        let mut names = swgoh::units::all_unit();
 
+        // TODO look here
+        https://stackoverflow.com/questions/45724517/how-to-iterate-through-a-hashmap-print-the-key-value-and-remove-the-value-in-ru
         for u in p.units {
-            for key in units.keys() {
+            for key in names.keys() {
                 println!("{key}");
-                units.insert(key.to_string(), u.unit_data.relic_tier.into());
+                names.insert(key.to_string(), u.unit_data.relic_tier.into());
             }
         }
 

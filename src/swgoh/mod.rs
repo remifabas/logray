@@ -11,7 +11,7 @@ pub struct Player {
     #[serde(rename = "data")]
     pub datas: Data,
     //#[serde(rename = "units")]
-    pub units: Vec<Unit>,
+    //pub units: Vec<Unit>,
     //pub mods: Vec<swgohmod>,
     //pub datacrons: Vec<Datacron>,
 }

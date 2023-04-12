@@ -10,8 +10,8 @@ pub struct SWgohMod {}
 pub struct Player {
     #[serde(rename = "data")]
     pub datas: Data,
-    //#[serde(rename = "units")]
-    //pub units: Vec<Unit>,
+    #[serde(rename = "units")]
+    pub units: Vec<Unit>,
     //pub mods: Vec<swgohmod>,
     //pub datacrons: Vec<Datacron>,
 }
@@ -47,19 +47,19 @@ pub struct Data {
 #[derive(Debug, Serialize, Deserialize)]
 pub struct Unit {
     #[serde(rename = "data")]
-    unit_data: UnitData,
+    pub unit_data: UnitData,
 }
 #[derive(Debug, Serialize, Deserialize)]
 pub struct UnitData {
-    base_id: String,
-    name: String,
-    gear_level: i8,
-    level: i8,
-    power: i32,
-    rarity: i8,
-    combat_type: i8, // 1 char, 2 ship
-    relic_tier: i8,  // should be minus 2 for real value (r0 = 1, r1 = 2 ... )
-    stats: Stats,
+    pub base_id: String,
+    pub name: String,
+    pub gear_level: i8,
+    pub level: i8,
+    pub power: i32,
+    pub rarity: i8,
+    pub combat_type: i8, // 1 char, 2 ship
+    pub relic_tier: i8,  // should be minus 2 for real value (r0 = 1, r1 = 2 ... )
+    pub stats: Stats,
 }
 #[derive(Debug, Serialize, Deserialize)]
 pub struct Stats {
@@ -89,4 +89,8 @@ pub struct Stats {
     dodge_chance: f32,
     #[serde(rename = "13")]
     deflection_chance: f32,
+    #[serde(rename = "14")]
+    physical_critical_chance: f32,
+    #[serde(rename = "15")]
+    special_critical_chance: f32,
 }

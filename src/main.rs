@@ -1,5 +1,6 @@
 mod swgoh;
 use csv::{Writer, WriterBuilder};
+//use std::collections::HashMap;
 use std::fs::File;
 use swgoh::Player;
 
@@ -49,7 +50,16 @@ async fn main() {
     }
 
     for p in players {
-        write_to_csv_file(p, &mut writer);
+        let mut units = swgoh::units::all_unit();
+
+        for u in p.units {
+            for key in units.keys() {
+                println!("{key}");
+                units.insert(key.to_string(), u.unit_data.relic_tier.into());
+            }
+        }
+
+        //write_to_csv_file(p, &mut writer);
     }
 
     writer.flush().expect("Failed to flush CSV writer");

@@ -52,14 +52,16 @@ async fn main() {
     for p in players {
         let mut names = swgoh::units::all_unit();
 
-        // TODO look here
-        https://stackoverflow.com/questions/45724517/how-to-iterate-through-a-hashmap-print-the-key-value-and-remove-the-value-in-ru
-        for u in p.units {
-            for key in names.keys() {
-                println!("{key}");
-                names.insert(key.to_string(), u.unit_data.relic_tier.into());
-            }
+        for u in &p.units {
+            names.retain(|k, v| {
+                if &u.unit_data.name == k {
+                    *v = u.unit_data.relic_tier;
+                }
+                true
+            })
         }
+
+        println!("{:#?}", names);
 
         //write_to_csv_file(p, &mut writer);
     }

@@ -57,8 +57,8 @@ pub struct UnitData {
     pub level: i8,
     pub power: i32,
     pub rarity: i8,
-    pub combat_type: i8, // 1 char, 2 ship
-    pub relic_tier: i8,  // should be minus 2 for real value (r0 = 1, r1 = 2 ... )
+    pub combat_type: i32, // 1 char, 2 ship
+    pub relic_tier: i32,  // should be minus 2 for real value (r0 = 1, r1 = 2 ... )
     pub stats: Stats,
 }
 #[derive(Debug, Serialize, Deserialize)]

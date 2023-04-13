@@ -1,6 +1,6 @@
 mod swgoh;
 use csv::{Writer, WriterBuilder};
-//use std::collections::HashMap;
+use std::collections::HashMap;
 use std::fs::File;
 use swgoh::Player;
 
@@ -13,13 +13,26 @@ async fn get_player_info(player_id: &str) -> Result<Player, reqwest::Error> {
     Ok(player)
 }
 
-fn write_to_csv_file(p: swgoh::Player, writer: &mut Writer<File>) {
-    for char in p.units {
-        println!("{:#?}", char.unit_data.name);
-    }
-    if let Err(e) = writer.write_record(&[p.datas.name, p.datas.arena_rank.to_string()]) {
+fn write_to_csv_file(
+    map: HashMap<String, Vec<String>>,
+    guild_member: Vec<String>,
+    writer: &mut Writer<File>,
+) {
+    if let Err(e) = writer.write_record(&[guild_member]) {
         eprintln!("Error writing to CSV file: {}", e);
     }
+
+    for (x, p) in map.into_iter() {
+        if let Err(e) = writer.write_record(&[p.datas.arena_rank.to_string()]) {
+            eprintln!("Error writing to CSV file: {}", e);
+        }
+    }
+
+    /*
+    if let Err(e) = writer.write_record(&[h, p.datas.arena_rank.to_string()]) {
+        eprintln!("Error writing to CSV file: {}", e);
+    }
+    */
 }
 
 #[tokio::main]
@@ -60,10 +73,8 @@ async fn main() {
                 true
             })
         }
-
-        //write_to_csv_file(p, &mut writer);
     }
-    println!("{:#?}", names);
-
+    //println!("{:#?}", names);
+    write_to_csv_file(names, ally_codes, &mut writer);
     writer.flush().expect("Failed to flush CSV writer");
 }

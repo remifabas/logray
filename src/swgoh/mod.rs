@@ -72,7 +72,7 @@ pub struct Stats {
     #[serde(rename = "4")]
     tactics: f32,
     #[serde(rename = "5")]
-    speed: f32,
+    pub speed: f32,
     #[serde(rename = "6")]
     physical_damage: f32,
     #[serde(rename = "7")]

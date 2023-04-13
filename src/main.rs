@@ -49,22 +49,21 @@ async fn main() {
         }
     }
 
-    for p in players {
-        let mut names = swgoh::units::all_unit();
+    let mut names = swgoh::units::all_unit(3);
 
+    for (x, p) in players.into_iter().enumerate() {
         for u in &p.units {
             names.retain(|k, v| {
                 if &u.unit_data.name == k {
-                    *v = u.unit_data.relic_tier;
+                    v[x] = u.unit_data.stats.speed.to_string();
                 }
                 true
             })
         }
 
-        println!("{:#?}", names);
-
         //write_to_csv_file(p, &mut writer);
     }
+    println!("{:#?}", names);
 
     writer.flush().expect("Failed to flush CSV writer");
 }

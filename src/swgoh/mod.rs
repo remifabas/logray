@@ -1,7 +1,14 @@
 use serde::{Deserialize, Serialize};
+pub mod logray;
 pub mod units;
+
 #[derive(Debug, Serialize, Deserialize)]
 pub struct Datacron {}
+
+pub struct Allies {
+    pub ally_code: String,
+    pub name: String,
+}
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct SWgohMod {}

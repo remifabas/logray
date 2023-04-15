@@ -1,7 +1,7 @@
-use std::collections::HashMap;
+use std::collections::BTreeMap;
 
-pub fn all_unit(len: usize) -> HashMap<String, Vec<String>> {
-    HashMap::from([
+pub fn all_unit(len: usize) -> BTreeMap<String, Vec<String>> {
+    BTreeMap::from([
         (
             String::from("Jedi Master Kenobi"),
             vec!["".to_string(); len],

@@ -1,6 +1,6 @@
 mod swgoh;
-use csv::{Writer, WriterBuilder};
-use std::collections::HashMap;
+use csv::{QuoteStyle, Writer, WriterBuilder};
+use std::collections::BTreeMap;
 use std::fs::File;
 use swgoh::Player;
 
@@ -14,44 +14,49 @@ async fn get_player_info(player_id: &str) -> Result<Player, reqwest::Error> {
 }
 
 fn write_to_csv_file(
-    map: HashMap<String, Vec<String>>,
-    guild_member: Vec<String>,
+    map: BTreeMap<String, Vec<String>>,
+    guild_members: Vec<swgoh::Allies>,
     writer: &mut Writer<File>,
 ) {
-    if let Err(e) = writer.write_record(&[guild_member]) {
-        eprintln!("Error writing to CSV file: {}", e);
+    let mut lines = Vec::new();
+
+    let mut line_guild_members = String::from("Guild Members");
+    for a in guild_members {
+        line_guild_members.push_str("; ");
+        line_guild_members.push_str(&a.name);
     }
 
-    for (x, p) in map.into_iter() {
-        if let Err(e) = writer.write_record(&[p.datas.arena_rank.to_string()]) {
+    lines.push(line_guild_members);
+
+    for (current_chara_name, vec_current_char) in map.iter() {
+        let mut line_current_character = String::from(current_chara_name);
+        for value in vec_current_char {
+            line_current_character.push_str("; ");
+            line_current_character.push_str(value);
+        }
+        lines.push(line_current_character);
+    }
+
+    for l in lines {
+        if let Err(e) = writer.write_record(&[l]) {
             eprintln!("Error writing to CSV file: {}", e);
         }
     }
-
-    /*
-    if let Err(e) = writer.write_record(&[h, p.datas.arena_rank.to_string()]) {
-        eprintln!("Error writing to CSV file: {}", e);
-    }
-    */
 }
 
 #[tokio::main]
 async fn main() {
     let mut writer = WriterBuilder::new()
         .has_headers(false)
+        .quote_style(QuoteStyle::Never)
         .from_path("output.csv")
         .expect("Failed to create CSV writer");
 
-    let ally_codes = vec![
-        String::from("616247683"), //   Phôenyx
-        String::from("327786519"), //   Whills Wotan
-        String::from("543168732"), //   M'enfin
-    ];
-
+    let lograys = swgoh::logray::get_lograys_player();
     let mut players: Vec<swgoh::Player> = vec![];
 
-    for ally_code in ally_codes {
-        match get_player_info(&ally_code).await {
+    for ally_code in &lograys {
+        match get_player_info(&ally_code.ally_code).await {
             Ok(p) => {
                 //println!("{:#?}", p);
                 players.push(p);
@@ -62,7 +67,7 @@ async fn main() {
         }
     }
 
-    let mut names = swgoh::units::all_unit(3);
+    let mut names = swgoh::units::all_unit(lograys.len());
 
     for (x, p) in players.into_iter().enumerate() {
         for u in &p.units {
@@ -75,6 +80,6 @@ async fn main() {
         }
     }
     //println!("{:#?}", names);
-    write_to_csv_file(names, ally_codes, &mut writer);
+    write_to_csv_file(names, lograys, &mut writer);
     writer.flush().expect("Failed to flush CSV writer");
 }

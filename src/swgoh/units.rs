@@ -1,7 +1,5 @@
-use std::collections::BTreeMap;
-
-pub fn all_unit(len: usize) -> BTreeMap<String, Vec<String>> {
-    BTreeMap::from([
+pub fn all_unit(len: usize) -> indexmap::IndexMap<String, Vec<String>> {
+    indexmap::IndexMap::from([
         (
             String::from("Jedi Master Kenobi"),
             vec!["".to_string(); len],

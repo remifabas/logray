@@ -1,13 +1,16 @@
 use serde::{Deserialize, Serialize};
+pub mod csv;
 pub mod logray;
 pub mod units;
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct Datacron {}
 
+#[derive(Clone)]
 pub struct Allies {
     pub ally_code: String,
     pub name: String,
+    pub name_export: String,
 }
 
 #[derive(Debug, Serialize, Deserialize)]
@@ -60,7 +63,7 @@ pub struct Unit {
 pub struct UnitData {
     pub base_id: String,
     pub name: String,
-    pub gear_level: i8,
+    pub gear_level: i32,
     pub level: i8,
     pub power: i32,
     pub rarity: i8,
@@ -71,7 +74,7 @@ pub struct UnitData {
 #[derive(Debug, Serialize, Deserialize)]
 pub struct Stats {
     #[serde(rename = "1")]
-    health: f32,
+    pub health: f32,
     #[serde(rename = "2")]
     strength: f32,
     #[serde(rename = "3")]

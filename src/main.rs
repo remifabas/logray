@@ -1,7 +1,5 @@
 mod swgoh;
-use csv::{QuoteStyle, Writer, WriterBuilder};
-use std::collections::BTreeMap;
-use std::fs::File;
+use csv::{QuoteStyle, WriterBuilder};
 use swgoh::Player;
 
 async fn get_player_info(player_id: &str) -> Result<Player, reqwest::Error> {
@@ -10,46 +8,28 @@ async fn get_player_info(player_id: &str) -> Result<Player, reqwest::Error> {
     let response = reqwest::get(&url).await?;
     let player: Player = response.json().await?;
 
+    println!("player {}\t\t ok", player.datas.name);
     Ok(player)
-}
-
-fn write_to_csv_file(
-    map: BTreeMap<String, Vec<String>>,
-    guild_members: Vec<swgoh::Allies>,
-    writer: &mut Writer<File>,
-) {
-    let mut lines = Vec::new();
-
-    let mut line_guild_members = String::from("Guild Members");
-    for a in guild_members {
-        line_guild_members.push_str("; ");
-        line_guild_members.push_str(&a.name);
-    }
-
-    lines.push(line_guild_members);
-
-    for (current_chara_name, vec_current_char) in map.iter() {
-        let mut line_current_character = String::from(current_chara_name);
-        for value in vec_current_char {
-            line_current_character.push_str("; ");
-            line_current_character.push_str(value);
-        }
-        lines.push(line_current_character);
-    }
-
-    for l in lines {
-        if let Err(e) = writer.write_record(&[l]) {
-            eprintln!("Error writing to CSV file: {}", e);
-        }
-    }
 }
 
 #[tokio::main]
 async fn main() {
-    let mut writer = WriterBuilder::new()
+    let mut writer_speed = WriterBuilder::new()
         .has_headers(false)
         .quote_style(QuoteStyle::Never)
-        .from_path("output.csv")
+        .from_path("speed.csv")
+        .expect("Failed to create CSV writer");
+
+    let mut writer_gear = WriterBuilder::new()
+        .has_headers(false)
+        .quote_style(QuoteStyle::Never)
+        .from_path("relic.csv")
+        .expect("Failed to create CSV writer");
+
+    let mut writer_health = WriterBuilder::new()
+        .has_headers(false)
+        .quote_style(QuoteStyle::Never)
+        .from_path("health.csv")
         .expect("Failed to create CSV writer");
 
     let lograys = swgoh::logray::get_lograys_player();
@@ -58,7 +38,6 @@ async fn main() {
     for ally_code in &lograys {
         match get_player_info(&ally_code.ally_code).await {
             Ok(p) => {
-                //println!("{:#?}", p);
                 players.push(p);
             }
             Err(e) => {
@@ -67,19 +46,46 @@ async fn main() {
         }
     }
 
-    let mut names = swgoh::units::all_unit(lograys.len());
+    let mut map_speed = swgoh::units::all_unit(lograys.len());
+    let mut map_gear = swgoh::units::all_unit(lograys.len());
+    let mut map_health = swgoh::units::all_unit(lograys.len());
 
     for (x, p) in players.into_iter().enumerate() {
         for u in &p.units {
-            names.retain(|k, v| {
+            map_speed.retain(|k, v| {
                 if &u.unit_data.name == k {
                     v[x] = u.unit_data.stats.speed.to_string();
                 }
                 true
-            })
+            });
+            map_gear.retain(|k, v| {
+                if &u.unit_data.name == k {
+                    let mut val = u.unit_data.relic_tier + 11;
+                    if val == 12 {
+                        val = u.unit_data.gear_level;
+                    }
+                    v[x] = val.to_string();
+                }
+                true
+            });
+            map_health.retain(|k, v| {
+                if &u.unit_data.name == k {
+                    v[x] = u.unit_data.stats.health.to_string();
+                }
+                true
+            });
         }
     }
+
+    let l = lograys.clone();
+    let ll = lograys.clone();
     //println!("{:#?}", names);
-    write_to_csv_file(names, lograys, &mut writer);
-    writer.flush().expect("Failed to flush CSV writer");
+    swgoh::csv::write_to_csv(map_speed, lograys, &mut writer_speed);
+    swgoh::csv::write_to_csv(map_gear, l, &mut writer_gear);
+    swgoh::csv::write_to_csv(map_health, ll, &mut writer_health);
+    //write_to_csv_relic(names, lograys, &mut writer_2);
+
+    writer_speed.flush().expect("Failed to flush CSV writer");
+    writer_gear.flush().expect("Failed to flush CSV writer");
+    writer_health.flush().expect("Failed to flush CSV writer");
 }

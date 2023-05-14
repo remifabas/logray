@@ -3,33 +3,6 @@ use super::Allies;
 use csv::Writer;
 use std::fs::File;
 
-/*pub fn write_datas(mut names: BTreeMap<String, Vec<String>>, guild_members: Vec<Allies>) {
-    for (x, p) in players.into_iter().enumerate() {
-        for u in &p.units {
-            names.retain(|k, v| {
-                if &u.unit_data.name == k {
-                    v[x] = u.unit_data.stats.speed.to_string();
-                }
-                true
-            })
-        }
-    }
-
-    let mut writer = WriterBuilder::new()
-        .has_headers(false)
-        .quote_style(QuoteStyle::Never)
-        .from_path("output.csv")
-        .expect("Failed to create CSV writer");
-
-    let mut writer_2 = WriterBuilder::new()
-        .has_headers(false)
-        .quote_style(QuoteStyle::Never)
-        .from_path("charac.csv")
-        .expect("Failed to create CSV writer");
-
-    write_to_csv_speed(names, guild_members, &mut writer);
-}*/
-
 pub fn write_to_csv(
     map: indexmap::IndexMap<String, Vec<String>>,
     guild_members: Vec<Allies>,
@@ -59,4 +32,10 @@ pub fn write_to_csv(
             eprintln!("Error writing to CSV file: {}", e);
         }
     }
+}
+
+pub fn test() -> std::io::Result<()> {
+    let mut file = File::open("foo.txt")?;
+
+    Ok(())
 }

@@ -14,6 +14,7 @@ async fn get_player_info(player_id: &str) -> Result<Player, reqwest::Error> {
 
 #[tokio::main]
 async fn main() {
+    swgoh::csv::test();
     let mut writer_speed = WriterBuilder::new()
         .has_headers(false)
         .quote_style(QuoteStyle::Never)
@@ -84,8 +85,14 @@ async fn main() {
     swgoh::csv::write_to_csv(map_gear, l, &mut writer_gear);
     swgoh::csv::write_to_csv(map_health, ll, &mut writer_health);
     //write_to_csv_relic(names, lograys, &mut writer_2);
-
     writer_speed.flush().expect("Failed to flush CSV writer");
     writer_gear.flush().expect("Failed to flush CSV writer");
     writer_health.flush().expect("Failed to flush CSV writer");
 }
+
+/*
+match res {
+   Ok(event) => println!("event: {:?}", event),
+   Err(e) => println!("watch error: {:?}", e),
+}
+*/

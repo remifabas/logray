@@ -1,6 +1,5 @@
 # Logray
 
+## VScode
 
-# VScode
-
-- need code lldb to perfom debug
+- need code lldb extension to perfom debug

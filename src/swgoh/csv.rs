@@ -5,7 +5,7 @@ use std::fs::File;
 
 pub fn write_to_csv(
     map: indexmap::IndexMap<String, Vec<String>>,
-    guild_members: Vec<Allies>,
+    guild_members: &Vec<Allies>,
     writer: &mut Writer<File>,
 ) {
     let mut lines = Vec::new();
@@ -32,10 +32,4 @@ pub fn write_to_csv(
             eprintln!("Error writing to CSV file: {}", e);
         }
     }
-}
-
-pub fn test() -> std::io::Result<()> {
-    let mut file = File::open("foo.txt")?;
-
-    Ok(())
 }

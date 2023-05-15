@@ -2,13 +2,13 @@ pub fn all_ship(len: usize) -> indexmap::IndexMap<String, Vec<String>> {
     indexmap::IndexMap::from([
         (String::from("TIE Echelon"), vec!["".to_string(); len]),
         (String::from("Raven's Claw"), vec!["".to_string(); len]),
-        (String::from("Malvolence"), vec!["".to_string(); len]),
+        (String::from("Malevolence"), vec!["".to_string(); len]),
         (
-            String::from("Order SF TIE Fighter"),
+            String::from("First Order SF TIE Fighter"),
             vec!["".to_string(); len],
         ),
         (
-            String::from("Han's Millenium Falcon"),
+            String::from("Han's Millennium Falcon"),
             vec!["".to_string(); len],
         ),
         (String::from("Scimitar"), vec!["".to_string(); len]),
@@ -18,7 +18,7 @@ pub fn all_ship(len: usize) -> indexmap::IndexMap<String, Vec<String>> {
             vec!["".to_string(); len],
         ),
         (
-            String::from("Rey's Millenium Falcon"),
+            String::from("Rey's Millennium Falcon"),
             vec!["".to_string(); len],
         ),
         (String::from("Sith Fighter"), vec!["".to_string(); len]),
@@ -30,7 +30,7 @@ pub fn all_ship(len: usize) -> indexmap::IndexMap<String, Vec<String>> {
         (String::from("Raddus"), vec!["".to_string(); len]),
         (String::from("Hound's Tooth"), vec!["".to_string(); len]),
         (String::from("IG-2000"), vec!["".to_string(); len]),
-        (String::from("Xanadoo Blood"), vec!["".to_string(); len]),
+        (String::from("Xanadu Blood"), vec!["".to_string(); len]),
         (String::from("Ghost"), vec!["".to_string(); len]),
         (
             String::from("Imperial TIE Bomber"),
@@ -39,7 +39,7 @@ pub fn all_ship(len: usize) -> indexmap::IndexMap<String, Vec<String>> {
         (String::from("Slave I"), vec!["".to_string(); len]),
         (String::from("TIE Advanced x1"), vec!["".to_string(); len]),
         (
-            String::from("Lando's Millenium Falcon"),
+            String::from("Lando's Millennium Falcon"),
             vec!["".to_string(); len],
         ),
         (String::from("Ebon Hawk"), vec!["".to_string(); len]),
@@ -76,7 +76,7 @@ pub fn all_ship(len: usize) -> indexmap::IndexMap<String, Vec<String>> {
         ),
         (String::from("Executrix"), vec!["".to_string(); len]),
         (
-            String::from("Wedge Antilles's X-Wing"),
+            String::from("Wedge Antilles's X-wing"),
             vec!["".to_string(); len],
         ),
         (
@@ -94,7 +94,7 @@ pub fn all_ship(len: usize) -> indexmap::IndexMap<String, Vec<String>> {
         ),
         (String::from("Endurance"), vec!["".to_string(); len]),
         (
-            String::from("TIE-IN Interceptor Prorotype"),
+            String::from("TIE/IN Interceptor Prototype"),
             vec!["".to_string(); len],
         ),
         (String::from("Chimaera"), vec!["".to_string(); len]),
@@ -134,7 +134,7 @@ pub fn all_ship(len: usize) -> indexmap::IndexMap<String, Vec<String>> {
             String::from("Jedi Consular's Starfighter"),
             vec!["".to_string(); len],
         ),
-        (String::from("Rebel Y-Wing"), vec!["".to_string(); len]),
+        (String::from("Rebel Y-wing"), vec!["".to_string(); len]),
         (String::from("Profundity"), vec!["".to_string(); len]),
         (String::from("TIE Defender"), vec!["".to_string(); len]),
     ])

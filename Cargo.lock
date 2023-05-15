@@ -412,6 +412,7 @@ name = "logray"
 version = "0.1.0"
 dependencies = [
  "csv",
+ "indexmap",
  "reqwest",
  "serde",
  "tokio",

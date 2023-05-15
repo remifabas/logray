@@ -1,7 +1,147 @@
-use std::collections::BTreeMap;
+pub fn all_ship(len: usize) -> indexmap::IndexMap<String, Vec<String>> {
+    indexmap::IndexMap::from([
+        (String::from("TIE Echelon"), vec!["".to_string(); len]),
+        (String::from("Raven's Claw"), vec!["".to_string(); len]),
+        (String::from("Malevolence"), vec!["".to_string(); len]),
+        (
+            String::from("First Order SF TIE Fighter"),
+            vec!["".to_string(); len],
+        ),
+        (
+            String::from("Han's Millennium Falcon"),
+            vec!["".to_string(); len],
+        ),
+        (String::from("Scimitar"), vec!["".to_string(); len]),
+        (String::from("Rex's ARC-170"), vec!["".to_string(); len]),
+        (
+            String::from("First Order TIE Fighter"),
+            vec!["".to_string(); len],
+        ),
+        (
+            String::from("Rey's Millennium Falcon"),
+            vec!["".to_string(); len],
+        ),
+        (String::from("Sith Fighter"), vec!["".to_string(); len]),
+        (String::from("Resistance X-wing"), vec!["".to_string(); len]),
+        (
+            String::from("Anakin's Eta-2 Starfighter"),
+            vec!["".to_string(); len],
+        ),
+        (String::from("Raddus"), vec!["".to_string(); len]),
+        (String::from("Hound's Tooth"), vec!["".to_string(); len]),
+        (String::from("IG-2000"), vec!["".to_string(); len]),
+        (String::from("Xanadu Blood"), vec!["".to_string(); len]),
+        (String::from("Ghost"), vec!["".to_string(); len]),
+        (
+            String::from("Imperial TIE Bomber"),
+            vec!["".to_string(); len],
+        ),
+        (String::from("Slave I"), vec!["".to_string(); len]),
+        (String::from("TIE Advanced x1"), vec!["".to_string(); len]),
+        (
+            String::from("Lando's Millennium Falcon"),
+            vec!["".to_string(); len],
+        ),
+        (String::from("Ebon Hawk"), vec!["".to_string(); len]),
+        (
+            String::from("Plo Koon's Jedi Starfighter"),
+            vec!["".to_string(); len],
+        ),
+        (String::from("Razor Crest"), vec!["".to_string(); len]),
+        (
+            String::from("MG-100 StarFortress SF-17"),
+            vec!["".to_string(); len],
+        ),
+        (String::from("Scythe"), vec!["".to_string(); len]),
+        (String::from("Vulture Droid"), vec!["".to_string(); len]),
+        (String::from("Cassian's U-wing"), vec!["".to_string(); len]),
+        (String::from("Seventh Sister"), vec!["".to_string(); len]),
+        (String::from("Outrider"), vec!["".to_string(); len]),
+        (
+            String::from("Umbaran Starfighter"),
+            vec!["".to_string(); len],
+        ),
+        (String::from("Executor"), vec!["".to_string(); len]),
+        (String::from("Bistan's U-wing"), vec!["".to_string(); len]),
+        (String::from("Emperor's Shuttle"), vec!["".to_string(); len]),
+        (String::from("Home One"), vec!["".to_string(); len]),
+        (String::from("TIE Silencer"), vec!["".to_string(); len]),
+        (
+            String::from("BTL-B Y-wing Starfighter"),
+            vec!["".to_string(); len],
+        ),
+        (
+            String::from("Biggs Darklighter's X-wing"),
+            vec!["".to_string(); len],
+        ),
+        (String::from("Executrix"), vec!["".to_string(); len]),
+        (
+            String::from("Wedge Antilles's X-wing"),
+            vec!["".to_string(); len],
+        ),
+        (
+            String::from("Ahsoka Tano's Jedi Starfighter"),
+            vec!["".to_string(); len],
+        ),
+        (String::from("Negotiator"), vec!["".to_string(); len]),
+        (
+            String::from("Imperial TIE Fighter"),
+            vec!["".to_string(); len],
+        ),
+        (
+            String::from("Clone Sergeant's ARC-170"),
+            vec!["".to_string(); len],
+        ),
+        (String::from("Endurance"), vec!["".to_string(); len]),
+        (
+            String::from("TIE/IN Interceptor Prototype"),
+            vec!["".to_string(); len],
+        ),
+        (String::from("Chimaera"), vec!["".to_string(); len]),
+        (
+            String::from("Kylo Ren's Command Shuttle"),
+            vec!["".to_string(); len],
+        ),
+        (String::from("Phantom II"), vec!["".to_string(); len]),
+        (
+            String::from("Geonosian Soldier's Starfighter"),
+            vec!["".to_string(); len],
+        ),
+        (
+            String::from("Sun Fac's Geonosian Starfighter"),
+            vec!["".to_string(); len],
+        ),
+        (
+            String::from("Geonosian Spy's Starfighter"),
+            vec!["".to_string(); len],
+        ),
+        (
+            String::from("Poe Dameron's X-wing"),
+            vec!["".to_string(); len],
+        ),
+        (
+            String::from("B-28 Extinction-class Bomber"),
+            vec!["".to_string(); len],
+        ),
+        (
+            String::from("Gauntlet Starfighter"),
+            vec!["".to_string(); len],
+        ),
+        (String::from("Finalizer"), vec!["".to_string(); len]),
+        (String::from("TIE Reaper"), vec!["".to_string(); len]),
+        (String::from("Hyena Bomber"), vec!["".to_string(); len]),
+        (
+            String::from("Jedi Consular's Starfighter"),
+            vec!["".to_string(); len],
+        ),
+        (String::from("Rebel Y-wing"), vec!["".to_string(); len]),
+        (String::from("Profundity"), vec!["".to_string(); len]),
+        (String::from("TIE Defender"), vec!["".to_string(); len]),
+    ])
+}
 
-pub fn all_unit(len: usize) -> BTreeMap<String, Vec<String>> {
-    BTreeMap::from([
+pub fn all_unit(len: usize) -> indexmap::IndexMap<String, Vec<String>> {
+    indexmap::IndexMap::from([
         (
             String::from("Jedi Master Kenobi"),
             vec!["".to_string(); len],
@@ -83,7 +223,7 @@ pub fn all_unit(len: usize) -> BTreeMap<String, Vec<String>> {
         ),
         (String::from("Jyn Erso"), vec!["".to_string(); len]),
         (
-            String::from("Kylo Ren (Unmasked"),
+            String::from("Kylo Ren (Unmasked)"),
             vec!["".to_string(); len],
         ),
         (String::from("Moff Gideon"), vec!["".to_string(); len]),

@@ -8,36 +8,12 @@ async fn get_player_info(player_id: &str) -> Result<Player, reqwest::Error> {
     let response = reqwest::get(&url).await?;
     let player: Player = response.json().await?;
 
-    println!("player {}\t\t ok", player.datas.name);
+    println!("{}\t\t ok", player.datas.name);
     Ok(player)
 }
 
 #[tokio::main]
 async fn main() {
-    let mut writer_speed = WriterBuilder::new()
-        .has_headers(false)
-        .quote_style(QuoteStyle::Never)
-        .from_path("speed.csv")
-        .expect("Failed to create CSV writer");
-
-    let mut writer_ship = WriterBuilder::new()
-        .has_headers(false)
-        .quote_style(QuoteStyle::Never)
-        .from_path("ship.csv")
-        .expect("Failed to create CSV writer");
-
-    let mut writer_gear = WriterBuilder::new()
-        .has_headers(false)
-        .quote_style(QuoteStyle::Never)
-        .from_path("relic.csv")
-        .expect("Failed to create CSV writer");
-
-    let mut writer_health = WriterBuilder::new()
-        .has_headers(false)
-        .quote_style(QuoteStyle::Never)
-        .from_path("health.csv")
-        .expect("Failed to create CSV writer");
-
     let lograys = swgoh::logray::get_lograys_player();
     let mut players: Vec<swgoh::Player> = vec![];
 
@@ -90,15 +66,39 @@ async fn main() {
         }
     }
 
-    swgoh::csv::write_to_csv(map_speed, &lograys, &mut writer_speed);
-    swgoh::csv::write_to_csv(map_gear, &lograys, &mut writer_gear);
-    swgoh::csv::write_to_csv(map_health, &lograys, &mut writer_health);
-    swgoh::csv::write_to_csv(map_ship, &lograys, &mut writer_ship);
+    let mut writer_speed = WriterBuilder::new()
+        .has_headers(false)
+        .quote_style(QuoteStyle::Never)
+        .from_path("speed.csv")
+        .expect("Failed to create CSV writer");
 
-    writer_speed.flush().expect("Failed to flush CSV writer");
-    writer_gear.flush().expect("Failed to flush CSV writer");
-    writer_health.flush().expect("Failed to flush CSV writer");
-    writer_ship
-        .flush()
-        .expect("Failed to flush CSV ship writer");
+    let mut writer_ship = WriterBuilder::new()
+        .has_headers(false)
+        .quote_style(QuoteStyle::Never)
+        .from_path("ship.csv")
+        .expect("Failed to create CSV writer");
+
+    let mut writer_gear = WriterBuilder::new()
+        .has_headers(false)
+        .quote_style(QuoteStyle::Never)
+        .from_path("relic.csv")
+        .expect("Failed to create CSV writer");
+
+    let mut writer_health = WriterBuilder::new()
+        .has_headers(false)
+        .quote_style(QuoteStyle::Never)
+        .from_path("health.csv")
+        .expect("Failed to create CSV writer");
+
+    swgoh::csv::write_to_csv(map_speed, &lograys, &mut writer_speed);
+    writer_speed.flush().expect("Failed to flush writer");
+
+    swgoh::csv::write_to_csv(map_gear, &lograys, &mut writer_gear);
+    writer_gear.flush().expect("Failed to flush writer");
+
+    swgoh::csv::write_to_csv(map_health, &lograys, &mut writer_health);
+    writer_health.flush().expect("Failed to flush writer");
+
+    swgoh::csv::write_to_csv(map_ship, &lograys, &mut writer_ship);
+    writer_ship.flush().expect("Failed to flush writer");
 }

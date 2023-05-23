@@ -8,11 +8,6 @@ pub fn get_lograys_player() -> Vec<Allies> {
             name_export: String::from("ObiWanPeace"),
         },
         Allies {
-            ally_code: String::from("933376449"),
-            name: String::from("Vignemale"),
-            name_export: String::from("Vignemale"),
-        },
-        Allies {
             ally_code: String::from("346655887"),
             name: String::from("Dark Nash"),
             name_export: String::from("Dark Nash"),
@@ -93,11 +88,6 @@ pub fn get_lograys_player() -> Vec<Allies> {
             name_export: String::from("Obi Dam Nabira"),
         },
         Allies {
-            ally_code: String::from("244398435"),
-            name: String::from("Blood Eagle"),
-            name_export: String::from("Blood Eagle"),
-        },
-        Allies {
             ally_code: String::from("633546386"),
             name: String::from("Lumpouille"),
             name_export: String::from("Lumpouille"),
@@ -116,11 +106,6 @@ pub fn get_lograys_player() -> Vec<Allies> {
             ally_code: String::from("327786519"),
             name: String::from("Whills Wotan"),
             name_export: String::from("Whills Wotan"),
-        },
-        Allies {
-            ally_code: String::from("886448577"),
-            name: String::from("B"),
-            name_export: String::from("B"),
         },
         Allies {
             ally_code: String::from("281489492"),
@@ -148,14 +133,9 @@ pub fn get_lograys_player() -> Vec<Allies> {
             name_export: String::from("Drauglin Lucas"),
         },
         Allies {
-            ally_code: String::from("553844891"),
-            name: String::from("Chris de France"),
-            name_export: String::from("Chris de France"),
-        },
-        Allies {
             ally_code: String::from("965627652"),
-            name: String::from("Ulfberht"),
-            name_export: String::from("Ulfberht"),
+            name: String::from("Pao Piett de Vao"),
+            name_export: String::from("Pao Piett de Vao"),
         },
         Allies {
             ally_code: String::from("427249473"),
@@ -181,11 +161,6 @@ pub fn get_lograys_player() -> Vec<Allies> {
             ally_code: String::from("951788347"),
             name: String::from("Agen Kolar"),
             name_export: String::from("Agen Kolar"),
-        },
-        Allies {
-            ally_code: String::from("351441682"),
-            name: String::from("bananesandco"),
-            name_export: String::from("Bananesandco"),
         },
         Allies {
             ally_code: String::from("381525821"),
@@ -236,6 +211,26 @@ pub fn get_lograys_player() -> Vec<Allies> {
             ally_code: String::from("328979614"),
             name: String::from("Revanche Gilder"),
             name_export: String::from("Revanche Gilder"),
+        },
+        Allies {
+            ally_code: String::from("574945889"),
+            name: String::from("En esprit"),
+            name_export: String::from("En esprit"),
+        },
+        Allies {
+            ally_code: String::from("461555291"),
+            name: String::from("Mike Wheeler"),
+            name_export: String::from("Mike Wheeler"),
+        },
+        Allies {
+            ally_code: String::from("334596724"),
+            name: String::from("Din Djarin"),
+            name_export: String::from("Din Djarin"),
+        },
+        Allies {
+            ally_code: String::from("598695163"),
+            name: String::from("Luffy saitama"),
+            name_export: String::from("Luffy saitama"),
         },
     ];
 

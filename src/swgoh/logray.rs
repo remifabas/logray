@@ -80,7 +80,7 @@ pub fn get_lograys_player() -> Vec<Allies> {
         Allies {
             ally_code: String::from("687566192"),
             name: String::from("Nuke"),
-            name_export: String::from("ObiWanPeace"),
+            name_export: String::from("Nuke"),
         },
         Allies {
             ally_code: String::from("291377178"),
@@ -231,6 +231,16 @@ pub fn get_lograys_player() -> Vec<Allies> {
             ally_code: String::from("598695163"),
             name: String::from("Luffy saitama"),
             name_export: String::from("Luffy saitama"),
+        },
+        Allies {
+            ally_code: String::from("372434577"),
+            name: String::from("Nobo"),
+            name_export: String::from("Nobo"),
+        },
+        Allies {
+            ally_code: String::from("632892521"),
+            name: String::from("Virance"),
+            name_export: String::from("Virance"),
         },
     ];
 

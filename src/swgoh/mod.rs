@@ -6,7 +6,7 @@ pub mod units;
 #[derive(Debug, Serialize, Deserialize)]
 pub struct Datacron {}
 
-#[derive(Clone)]
+#[derive(Clone, Debug)]
 pub struct Allies {
     pub ally_code: String,
     pub name: String,

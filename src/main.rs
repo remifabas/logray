@@ -23,7 +23,7 @@ async fn main() {
                 players.push(p);
             }
             Err(e) => {
-                eprintln!("Error: {}", e);
+                eprintln!("Error: {}, for {:#?}", e, ally_code);
             }
         }
     }
@@ -101,4 +101,6 @@ async fn main() {
 
     swgoh::csv::write_to_csv(map_ship, &lograys, &mut writer_ship);
     writer_ship.flush().expect("Failed to flush writer");
+
+    println!("{} players handled", lograys.len());
 }

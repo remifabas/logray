@@ -1,20 +1,39 @@
 mod swgoh;
+
 use csv::{QuoteStyle, WriterBuilder};
 use swgoh::Player;
 
-async fn get_player_info(player_id: &str) -> Result<Player, reqwest::Error> {
+async fn get_player_info(player_id: &str) -> Result<swgoh::Player, reqwest::Error> {
     let url = format!("http://api.swgoh.gg/player/{}", player_id);
 
     let response = reqwest::get(&url).await?;
     let player: Player = response.json().await?;
 
-    println!("{}\t\t ok", player.datas.name);
+    println!("ok: {}", player.datas.name);
     Ok(player)
 }
+
+// let ops = vec![1, 2, 3];
+// let mut tasks = Vec::with_capacity(ops.len());
+// for op in ops {
+//     tasks.push(tokio::spawn(my_background_op(op)));
+// }
+
+// let mut outputs = Vec::with_capacity(tasks.len());
+// for task in tasks {
+//     outputs.push(task.await.unwrap());
+// }
 
 #[tokio::main]
 async fn main() {
     let lograys = swgoh::logray::get_lograys_player();
+
+    // let mut tasks = Vec::<swgoh::Allies>::with_capacity(lograys.len());
+
+    // for ewok in lograys {
+    //     tasks.push(tokio::spawn(get_player_info(&ewok.ally_code)))
+    // }
+
     let mut players: Vec<swgoh::Player> = vec![];
 
     for ally_code in &lograys {
@@ -41,7 +60,7 @@ async fn main() {
                 }
                 true
             });
-            map_gear.retain(|k, v| {
+            map_gear.retain(|k, v: &mut Vec<String>| {
                 if &u.unit_data.name == k {
                     let mut val = u.unit_data.relic_tier + 11;
                     if val == 12 {
@@ -75,13 +94,13 @@ async fn main() {
     let mut writer_ship = WriterBuilder::new()
         .has_headers(false)
         .quote_style(QuoteStyle::Never)
-        .from_path("ship.csv")
+        .from_path("ship_export.csv")
         .expect("Failed to create CSV writer");
 
     let mut writer_gear = WriterBuilder::new()
         .has_headers(false)
         .quote_style(QuoteStyle::Never)
-        .from_path("relic.csv")
+        .from_path("character_export.csv")
         .expect("Failed to create CSV writer");
 
     let mut writer_health = WriterBuilder::new()

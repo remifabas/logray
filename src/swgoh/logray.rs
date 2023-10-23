@@ -103,11 +103,6 @@ pub fn get_lograys_player() -> Vec<Allies> {
             name_export: String::from("Whills Wotan"),
         },
         Allies {
-            ally_code: String::from("281489492"),
-            name: String::from("Kaïpan"),
-            name_export: String::from("Kaïpan"),
-        },
-        Allies {
             ally_code: String::from("436567913"),
             name: String::from("Pouhpou"),
             name_export: String::from("Pouhpou"),
@@ -117,11 +112,11 @@ pub fn get_lograys_player() -> Vec<Allies> {
         //    name: String::from("Pao Piett de Vao"),
         //    name_export: String::from("Pao Piett de Vao"),
         //},
-        //Allies {
-        //    ally_code: String::from("427249473"),
-        //    name: String::from("Dovahkiin"),
-        //    name_export: String::from("Dovahkiin"),
-        //},
+        Allies {
+            ally_code: String::from("427249473"),
+            name: String::from("Dovahkiin"),
+            name_export: String::from("Dovahkiin"),
+        },
         Allies {
             ally_code: String::from("426773741"),
             name: String::from("Nightmarr"),
@@ -198,11 +193,6 @@ pub fn get_lograys_player() -> Vec<Allies> {
             name_export: String::from("Popi le terrible"),
         },
         Allies {
-            ally_code: String::from("259643358"),
-            name: String::from("BobLeBot"),
-            name_export: String::from("BobLeBot"),
-        },
-        Allies {
             ally_code: String::from("515472217"),
             name: String::from("Skicker"),
             name_export: String::from("Skicker"),
@@ -260,7 +250,7 @@ pub fn get_lograys_player() -> Vec<Allies> {
         Allies {
             ally_code: String::from("654887969"),
             name: String::from("dark sid"),
-            name_export: String::from("dark sid"),
+            name_export: String::from("Dark sid"),
         },
         Allies {
             ally_code: String::from("654887969"),
@@ -276,6 +266,16 @@ pub fn get_lograys_player() -> Vec<Allies> {
             ally_code: String::from("426435946"),
             name: String::from("Xilebo"),
             name_export: String::from("Xilebo"),
+        },
+        Allies {
+            ally_code: String::from("333698556"),
+            name: String::from("taquin"),
+            name_export: String::from("Taquin"),
+        },
+        Allies {
+            ally_code: String::from("272982556"),
+            name: String::from("Dace Joy"),
+            name_export: String::from("Dace Joy"),
         },
     ];
 

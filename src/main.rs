@@ -49,8 +49,8 @@ async fn main() {
 
     let mut map_speed = swgoh::units::all_unit(lograys.len());
     let mut map_gear = swgoh::units::all_unit(lograys.len());
-    let mut map_health = swgoh::units::all_unit(lograys.len());
-    let mut map_ship = swgoh::units::all_ship(lograys.len());
+    //let mut map_health = swgoh::units::all_unit(lograys.len());
+    //let mut map_ship = swgoh::units::all_ship(lograys.len());
 
     for (x, p) in players.into_iter().enumerate() {
         for u in &p.units {
@@ -70,18 +70,18 @@ async fn main() {
                 }
                 true
             });
-            map_health.retain(|k, v| {
-                if &u.unit_data.name == k {
-                    v[x] = u.unit_data.stats.health.to_string();
-                }
-                true
-            });
-            map_ship.retain(|k, v| {
-                if &u.unit_data.name == k {
-                    v[x] = u.unit_data.rarity.to_string();
-                }
-                true
-            })
+            // map_health.retain(|k, v| {
+            //     if &u.unit_data.name == k {
+            //         v[x] = u.unit_data.stats.health.to_string();
+            //     }
+            //     true
+            // });
+            // map_ship.retain(|k, v| {
+            //     if &u.unit_data.name == k {
+            //         v[x] = u.unit_data.rarity.to_string();
+            //     }
+            //     true
+            // })
         }
     }
 
@@ -115,11 +115,11 @@ async fn main() {
     swgoh::csv::write_to_csv(map_gear, &lograys, &mut writer_gear);
     writer_gear.flush().expect("Failed to flush writer");
 
-    swgoh::csv::write_to_csv(map_health, &lograys, &mut writer_health);
-    writer_health.flush().expect("Failed to flush writer");
-
-    swgoh::csv::write_to_csv(map_ship, &lograys, &mut writer_ship);
-    writer_ship.flush().expect("Failed to flush writer");
+    // swgoh::csv::write_to_csv(map_health, &lograys, &mut writer_health);
+    // writer_health.flush().expect("Failed to flush writer");
+    //
+    // swgoh::csv::write_to_csv(map_ship, &lograys, &mut writer_ship);
+    // writer_ship.flush().expect("Failed to flush writer");
 
     println!("{} players handled", lograys.len());
 }
